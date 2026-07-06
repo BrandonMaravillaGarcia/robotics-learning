@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from lawnmower_msgs.msg import LawnmowerStatus
+from lawnmower_msgs.srv import GetStatus
 
 class LawnmowerPublisher(Node):
     def __init__(self):
@@ -8,6 +9,7 @@ class LawnmowerPublisher(Node):
         self.publisher_ = self.create_publisher(LawnmowerStatus, 'lawnmower_status', 10)
         self.timer = self.create_timer(1.0, self.timer_callback)
         self.speed = 0.0
+        self.service = self.create_service(GetStatus, 'get_lawnmower_status', self.handle_get_status)
 
     def timer_callback(self):
         msg = LawnmowerStatus()
@@ -18,6 +20,13 @@ class LawnmowerPublisher(Node):
         self.publisher_.publish(msg)
         self.get_logger().info(f"Publishing: {msg.speed:.2f} m/s")
         self.speed += 0.1
+    
+    def handle_get_status(self, request, response):
+        response.speed = self.speed
+        response.battery = 85.0
+        response.latitude = 39.123
+        response.longitude = -75.456
+        return response
 
 def main(args = None):
     rclpy.init(args = args)
