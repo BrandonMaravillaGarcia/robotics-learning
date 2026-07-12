@@ -6,8 +6,10 @@ from lawnmower_msgs.srv import GetStatus
 class LawnmowerPublisher(Node):
     def __init__(self):
         super().__init__('lawnmower_publisher')
+        self.declare_parameter('publish_rate', 1.0)
         self.publisher_ = self.create_publisher(LawnmowerStatus, 'lawnmower_status', 10)
-        self.timer = self.create_timer(1.0, self.timer_callback)
+        publish_rate = self.get_parameter('publish_rate').value
+        self.timer = self.create_timer(publish_rate, self.timer_callback)
         self.speed = 0.0
         self.service = self.create_service(GetStatus, 'get_lawnmower_status', self.handle_get_status)
 
