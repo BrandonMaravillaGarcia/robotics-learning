@@ -18,6 +18,7 @@
         <model name = "ground_plane">
             <static>true</static>
             <link name = "link">
+
                 <collision name = "collision">
                     <geometry>
                         <plane>
@@ -26,6 +27,7 @@
                         </plane>
                     </geometry>
                 </collision>
+
                 <visual name = "visual">
                     <geometry>
                         <plane>
@@ -33,10 +35,80 @@
                             <size>100 100</size>
                         </plane>
                     </geometry>
+
                     <material>
                         <ambient>0.3 0.5 0.2 1</ambient>
                         <diffuse>0.3 0.5 0.2 1</diffuse>
                     </material>
+                </visual>
+
+            </link>
+        </model>
+
+        <model name = "obstacle box">
+            <static>true</static>
+            <pose>3 2 0.5 0 0 0</pose>
+
+            <link name = "link">
+
+                <collision name = "collision">
+                    
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+
+                </collision>
+
+                <visual name = "visual">
+                    
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+
+                    <material>
+                        <ambient>0.5 0.3 0.1 1</ambient>
+                        <diffuse>0.5 0.3 0.1 1</diffuse>
+                    </material>
+
+                </visual>
+            </link>
+        </model>
+
+        <model name = "tree_trunk">
+            <static>true</static>
+            <pose>-2 -3 0.75 0 0 0</pose>
+
+            <link name = "link">
+
+                <collision name = "collision">
+
+                    <geometry>
+                        <cylinder>
+                            <radius>0.3</radius>
+                            <length>1.5</length>
+                        </cylinder>
+                    </geometry>
+
+                </collision>
+
+                <visual name = "visual">
+
+                    <geometry>
+                        <cylinder>
+                            <radius>0.3</radius>
+                            <length>1.5</length>
+                        </cylinder>
+                    </geometry>
+
+                    <material>
+                        <ambient>0.65 0.16 0.16 1</ambient>
+                        <diffuse>0.65 0.16 0.16 1</diffuse>
+                    </material>
+
                 </visual>
             </link>
         </model>
